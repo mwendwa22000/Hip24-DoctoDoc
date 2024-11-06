@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocToDoc Translator</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>DocToDoc Translator</h1>
+</header>
+
+<div class="container">
+
+    <!-- Translation List -->
+    <h2>Translation List</h2>
+    <table>
+        <tr>
+            <th>Finnish Statement</th>
+            <th>English Translation</th>
+            <th>Bookmark</th>
+        </tr>
+        <tr>
+            <td>Onko sinulla hengitysvaikeuksia?</td>
+            <td>Do you have difficulty breathing?</td>
+            <td><span class="bookmark" onclick="toggleBookmark(this, 'Do you have difficulty breathing?', 'Onko sinulla hengitysvaikeuksia?')">&#9734;</span></td>
+        </tr>
+        <tr>
+            <td>Kuinka kauan olet ollut yskä?</td>
+            <td>How long have you had a cough?</td>
+            <td><span class="bookmark" onclick="toggleBookmark(this, 'How long have you had a cough?', 'Kuinka kauan olet ollut yskä?')">&#9734;</span></td>
+        </tr>
+        <tr>
+            <td>Oletko kokenut päänsärkyä?</td>
+            <td>Have you experienced headaches?</td>
+            <td><span class="bookmark" onclick="toggleBookmark(this, 'Have you experienced headaches?', 'Oletko kokenut päänsärkyä?')">&#9734;</span></td>
+        </tr>
+        <!-- Add more translations as needed -->
+    </table>
+
+    <!-- Bookmarked Statements -->
+    <div id="bookmarked-statements" class="bookmarked-statements">
+        <h2>Bookmarked Statements</h2>
+        <p id="no-bookmarks">No bookmarks yet.</p>
+        <ul id="bookmark-list"></ul>
+    </div>
+</div>
+
+<script>
+    const bookmarkList = document.getElementById('bookmark-list');
+    const noBookmarks = document.getElementById('no-bookmarks');
+
+    function toggleBookmark(element, english, finnish) {
+        element.classList.toggle('bookmarked');
+        element.innerHTML = element.classList.contains('bookmarked') ? '&#9733;' : '&#9734;';
+
+        // Add or remove from bookmarks
+        const statementId = finnish.replace(/\s+/g, '-').toLowerCase();
+        if (element.classList.contains('bookmarked')) {
+            addBookmark(statementId, english, finnish);
+        } else {
+            removeBookmark(statementId);
+        }
+        updateBookmarkVisibility();
+    }
+
+    function addBookmark(id, english, finnish) {
+        const listItem = document.createElement('li');
+        listItem.id = id;
+        listItem.innerHTML = <strong>Finnish:</strong> ${finnish} <br> <strong>English:</strong> ${english};
+        bookmarkList.appendChild(listItem);
+    }
+
+    function removeBookmark(id) {
+        const listItem = document.getElementById(id);
+        if (listItem) {
+            bookmarkList.removeChild(listItem);
+        }
+    }
+
+    function updateBookmarkVisibility() {
+        if (bookmarkList.children.length > 0) {
+            noBookmarks.style.display = 'none';
+        } else {
+            noBookmarks.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

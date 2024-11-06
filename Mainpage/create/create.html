@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Create Account</h1>
+        <p>Already Registered? <a href="loginpage/profile.html"> Click here</a></p>
+        <form id="login-form">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" placeholder="hello@google.com" required>
+            
+            <label for="password">SET PASSWORD</label>
+            <input type="password" id="password" name="password" placeholder="Example@2324" required>
+            
+            <label for="confirm-password">CONFIRM PASSWORD</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Example@2324" required>
+            
+        </form>
+        <form id="payment-form">
+            <label for="cards">PAYMENT METHOD</label>
+            <input type="num1" id="num1" name="num1" placeholder="Credit or debit cards" required>
+            <input type="num2" id="num2" name="num2" placeholder="Paypal" required>
+
+            <button type="submit">Sign up</button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
